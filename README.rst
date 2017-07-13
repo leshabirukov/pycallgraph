@@ -3,10 +3,14 @@ Python Call Graph
 
 Welcome! Python Call Graph is a `Python <http://www.python.org>`_ module that creates `call graph <http://en.wikipedia.org/wiki/Call_graph>`_ visualizations for Python applications.
 
-.. image:: https://travis-ci.org/gak/pycallgraph.svg
+.. image:: https://img.shields.io/travis/gak/pycallgraph.svg
     :target: https://travis-ci.org/gak/pycallgraph
-.. image:: https://coveralls.io/repos/gak/pycallgraph/badge.svg?branch=develop
+.. image:: https://img.shields.io/coveralls/gak/pycallgraph/develop.svg
     :target: https://coveralls.io/r/gak/pycallgraph?branch=develop
+.. image:: https://img.shields.io/pypi/v/pycallgraph.svg
+    :target: https://crate.io/packages/pycallgraph/
+.. image:: https://img.shields.io/pypi/dm/pycallgraph.svg
+    :target: https://crate.io/packages/pycallgraph
 
 Screenshots
 ===========
@@ -23,7 +27,7 @@ Click on the images below to see a larger version and the source code that gener
 Project Status
 ==============
 
-The latest version is **1.0.1** which was released on 2013-09-17, and is a backwards incompatbile from the previous release.
+The latest version is **1.0.1** which was released on 2013-09-17, and is a backwards incompatible from the previous release.
 
 The `project lives on GitHub <https://github.com/gak/pycallgraph/#python-call-graph>`_, where you can `report issues <https://github.com/gak/pycallgraph/issues>`_, contribute to the project by `forking the project <https://help.github.com/articles/fork-a-repo>`_ then creating a `pull request <https://help.github.com/articles/using-pull-requests>`_, or just `browse the source code <https://github.com/gak/pycallgraph/>`_.
 
@@ -61,6 +65,34 @@ A simple use of the API is::
 
     with PyCallGraph(output=GraphvizOutput()):
         code_to_profile()
+
+Use decorators for an even more simple use of the API::
+
+    from pycallgraph.decorators import trace
+
+    @trace("path/to/output.png")
+    def main():
+        code_to_profile()
+
+    main()
+
+Or decorate a specific function inside your code you want to profile::
+
+    from pycallgraph.decorators import trace
+
+    @trace("path/to/output.png")
+    def function_1():
+        do_stuff
+
+    def function_2():
+        do_stuff
+
+    def code_to_profile():
+        function_1()
+        function_2()
+
+    code_to_profile()
+
 
 Documentation
 =============
