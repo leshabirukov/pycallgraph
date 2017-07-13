@@ -66,6 +66,34 @@ A simple use of the API is::
     with PyCallGraph(output=GraphvizOutput()):
         code_to_profile()
 
+Use decorators for an even more simple use of the API::
+
+    from pycallgraph.decorators import trace
+
+    @trace("path/to/output.png")
+    def main():
+        code_to_profile()
+
+    main()
+
+Or decorate a specific function inside your code you want to profile::
+
+    from pycallgraph.decorators import trace
+
+    @trace("path/to/output.png")
+    def function_1():
+        do_stuff
+
+    def function_2():
+        do_stuff
+
+    def code_to_profile():
+        function_1()
+        function_2()
+
+    code_to_profile()
+
+
 Documentation
 =============
 
