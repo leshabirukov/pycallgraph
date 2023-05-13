@@ -316,10 +316,10 @@ class TraceProcessor(Thread):
             yield self.stat_group_from_func(func, calls)
 
     def edges(self):
-        for src_func, dests in self.call_dict.iteritems():
+        for src_func, dests in self.call_dict.items():
             if not src_func:
                 continue
-            for dst_func, calls in dests.iteritems():
+            for dst_func, calls in dests.items():
                 edge = self.stat_group_from_func(dst_func, calls)
                 edge.src_func = src_func
                 edge.dst_func = dst_func
