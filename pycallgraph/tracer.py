@@ -294,7 +294,7 @@ class TraceProcessor(Thread):
         grp = defaultdict(list)
         for node in self.nodes():
             grp[node.group].append(node)
-        for g in grp.iteritems():
+        for g in grp.items():
             yield g
 
     def stat_group_from_func(self, func, calls):
@@ -312,7 +312,7 @@ class TraceProcessor(Thread):
         return stat_group
 
     def nodes(self):
-        for func, calls in self.func_count.iteritems():
+        for func, calls in self.func_count.items():
             yield self.stat_group_from_func(func, calls)
 
     def edges(self):
